@@ -16,7 +16,7 @@ public abstract class Node {
     private ArrayList<Node> children=new ArrayList<Node>();
     protected Node parent;
     private int type;
-    private Node bestChild;
+    public Node bestChild;
     public void addChild(Node child){
         child.parent=this;
         children.add(child);

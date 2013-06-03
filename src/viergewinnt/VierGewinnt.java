@@ -48,7 +48,24 @@ public class VierGewinnt {
          m.paintCircle(free, new DrawCircle(Color.blue));
          computer(free);
     }
-    private void buildSearchTree(){
+    private Node buildSearchTree(){
+     /**
+     * for(int row=0;row<7;row++){
+     *   if(hasFree(row)){
+     *       int stepCell=getFree(row);
+     *       copyOfRows[row][stepCell]=Node.MAX;
+     *       new VierGewinntNode(rows, stepCell);
+     *   }
+     * }
+     **/
+     return null;
+    }
+    private boolean hasFree(int num){
+        return rows[num][0]==null;
+    }
+    private int search(){
+        Node rootNode=buildSearchTree();
+        return ((VierGewinntNode)rootNode.bestChild).stepCell;
     }
     private int getFree(int row){
         int free=0;

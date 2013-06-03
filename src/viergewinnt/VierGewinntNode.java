@@ -11,8 +11,10 @@ package viergewinnt;
 public class VierGewinntNode extends Node{
 
     private Integer[][] rows;
-    public VierGewinntNode(Integer[][] rows) {
+    public final int stepCell;
+    public VierGewinntNode(Integer[][] rows,int stepCell) {
         this.rows=rows;
+        this.stepCell=stepCell;
     }
 
     
