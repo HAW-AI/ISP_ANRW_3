@@ -15,7 +15,8 @@ public abstract class Node {
     public static final int MAX=2;
     private ArrayList<Node> children=new ArrayList<Node>();
     protected Node parent;
-    private int type; 
+    private int type;
+    private Node bestChild;
     public void addChild(Node child){
         child.parent=this;
         children.add(child);
@@ -37,9 +38,11 @@ public abstract class Node {
                 if(best >a) {
                     a = best;
                 }
-                int val = children.get(i).minmaxAB(a, b);
+                Node child=children.get(i);
+                int val = child.minmaxAB(a, b);
                 if(val > best) {
                     best = val;
+                    bestChild=child;
                 }
                 if(best >=b) {
                     return best;
@@ -51,9 +54,11 @@ public abstract class Node {
                 if(best < b) {
                     b = best;
                 }
-                int val = children.get(i).minmaxAB(a, b);
+                Node child=children.get(i);
+                int val = child.minmaxAB(a, b);
                 if(val < best) {
                     best = val;
+                    bestChild=child;
                 }
                 if(a <=best) {
                     return best;

@@ -25,9 +25,8 @@ public class VierGewinnt {
         rows[3]=new Integer[6];
         rows[4]=new Integer[6];
         rows[5]=new Integer[6];
-        rows[6]=new Integer[6];
-        
-        computer();
+        rows[6]=new Integer[6];  
+        computer(3);
     }
     public static VierGewinnt getInstance(){
         if(instance==null) {
@@ -40,12 +39,16 @@ public class VierGewinnt {
             player=false;
             int free=0;
             int row=((num-1)%7);
-            player(getFree(row));
+            player(row);
         }
     }
-    public void player(int num){
-         m.paintCircle(num, new DrawCircle(Color.blue));
-         computer();
+    public void player(int row){
+        int free=getFree(row);
+        rows[row][free]=Node.MIN;
+         m.paintCircle(free, new DrawCircle(Color.blue));
+         computer(free);
+    }
+    private void buildSearchTree(){
     }
     private int getFree(int row){
         int free=0;
@@ -55,12 +58,13 @@ public class VierGewinnt {
                 free=i;
             }
         }
-        rows[row][free]=1;
         System.out.println("Free:"+free);
         return row+(7*free)+1;
     }
-    public void computer(){
-        m.paintCircle(getFree(3), new DrawCircle(Color.red));
+    public void computer(int row){
+        int free=getFree(row);
+        rows[row][free]=Node.MAX;
+        m.paintCircle(free, new DrawCircle(Color.red));
         player=true;
     }
     /**
